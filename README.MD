@@ -10,20 +10,23 @@ it will not affect the launch of other tasks in any way.*
 ```
 scheduler := job_scheduler.NewJobScheduler()
 reportChannel := scheduler.RunJobScheduler() // We can start Job Scheduler immediately, even if job pool is empty at the moment
+
 additionalDataAForJob := "Some text message"
 additionalDataBForJob := 998
 
-_, err := scheduler.CreateNewJob(job_scheduler.Schedule{
-        Minute:     "10",
-        Hour:       "*",
-        DayOfMonth: "*",
-        Month:      "*",
-        DayOfWeek:  "*",
-    }, "Normal job with variables", func(v1 string, v2 int) error {
+schedule := job_scheduler.Schedule{
+    Minute:     "10",
+    Hour:       "*",
+    DayOfMonth: "*",
+    Month:      "*",
+    DayOfWeek:  "*",
+}
+
+_, err := scheduler.CreateNewJob(schedule, "Normal job with variables", func(v1 string, v2 int) error {
+
+    fmt.Printf("We are running job 1! We also have additional variables for this job: \nVariableA: %s\nVariableB: %d\n", v1, v2)
+    return nil // We return error = nil if job is successfully done
     
-        fmt.Printf("We are running job 1! We also have additional variables for this job: \nVariableA: %s\nVariableB: %d\n", v1, v2)
-        return nil // We return error = nil if job is successfully done
-        
     }, additionalDataAForJob, additionalDataBForJob)
 
 if err != nil {
