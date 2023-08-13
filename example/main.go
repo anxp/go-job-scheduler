@@ -14,18 +14,20 @@ func main() {
 	additionalDataBForJob := 998
 
 	//=== This is normal job which can be successfully completed: ======================================================
-	_, err := scheduler.CreateNewJob(go_job_scheduler.Schedule{
-		Minute:     "10",
-		Hour:       "*",
-		DayOfMonth: "*",
-		Month:      "*",
-		DayOfWeek:  "*",
-	}, "Normal job with variables", func(v1 string, v2 int) error {
+	_, err := scheduler.CreateNewJob(
+		"Normal job with variables",
+		go_job_scheduler.Schedule{
+			Minute:     "10",
+			Hour:       "*",
+			DayOfMonth: "*",
+			Month:      "*",
+			DayOfWeek:  "*",
+		}, func(v1 string, v2 int) error {
 
-		fmt.Printf("We are running job 1! We also have additional variables for this job: \nVariableA: %s\nVariableB: %d\n", v1, v2)
-		return nil // We return error = nil if job is successfully done
+			fmt.Printf("We are running job 1! We also have additional variables for this job: \nVariableA: %s\nVariableB: %d\n", v1, v2)
+			return nil // We return error = nil if job is successfully done
 
-	}, additionalDataAForJob, additionalDataBForJob)
+		}, additionalDataAForJob, additionalDataBForJob)
 
 	if err != nil {
 		fmt.Print(err)
@@ -34,18 +36,20 @@ func main() {
 	//==================================================================================================================
 
 	//=== This is example of job that cannot be successfully completed, it runs every minute and issues an error: ======
-	_, err = scheduler.CreateNewJob(go_job_scheduler.Schedule{
-		Minute:     "*",
-		Hour:       "*",
-		DayOfMonth: "*",
-		Month:      "*",
-		DayOfWeek:  "*",
-	}, "Failing job", func() error {
+	_, err = scheduler.CreateNewJob(
+		"Failing job",
+		go_job_scheduler.Schedule{
+			Minute:     "*",
+			Hour:       "*",
+			DayOfMonth: "*",
+			Month:      "*",
+			DayOfWeek:  "*",
+		}, func() error {
 
-		fmt.Printf("We are running job 2!\n")
-		return errors.New("can't make this every-minute job done")
+			fmt.Printf("We are running job 2!\n")
+			return errors.New("can't make this every-minute job done")
 
-	})
+		})
 
 	if err != nil {
 		fmt.Print(err)
@@ -54,18 +58,20 @@ func main() {
 	//==================================================================================================================
 
 	//=== This is example of job that will never run because there are no 60th minute, use 0 instead! ==================
-	_, err = scheduler.CreateNewJob(go_job_scheduler.Schedule{
-		Minute:     "60",
-		Hour:       "*",
-		DayOfMonth: "*",
-		Month:      "*",
-		DayOfWeek:  "*",
-	}, "Never run job", func() error {
+	_, err = scheduler.CreateNewJob(
+		"Never run job",
+		go_job_scheduler.Schedule{
+			Minute:     "60",
+			Hour:       "*",
+			DayOfMonth: "*",
+			Month:      "*",
+			DayOfWeek:  "*",
+		}, func() error {
 
-		fmt.Printf("We are running job 3!\n") // We should never see this
-		return nil
+			fmt.Printf("We are running job 3!\n") // We should never see this
+			return nil
 
-	})
+		})
 
 	if err != nil {
 		fmt.Print(err)
@@ -74,18 +80,20 @@ func main() {
 	//==================================================================================================================
 
 	//=== This is example of job that will run once an hour at 0 minute: ===============================================
-	_, err = scheduler.CreateNewJob(go_job_scheduler.Schedule{
-		Minute:     "0",
-		Hour:       "*",
-		DayOfMonth: "*",
-		Month:      "*",
-		DayOfWeek:  "*",
-	}, "Hourly job that run every 0 minute of hour", func() error {
+	_, err = scheduler.CreateNewJob(
+		"Hourly job that run every 0 minute of hour",
+		go_job_scheduler.Schedule{
+			Minute:     "0",
+			Hour:       "*",
+			DayOfMonth: "*",
+			Month:      "*",
+			DayOfWeek:  "*",
+		}, func() error {
 
-		fmt.Printf("We are running job 4!\n")
-		return nil
+			fmt.Printf("We are running job 4!\n")
+			return nil
 
-	})
+		})
 
 	if err != nil {
 		fmt.Print(err)

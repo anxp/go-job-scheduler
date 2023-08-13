@@ -157,7 +157,7 @@ func (js *JobScheduler) RunJobScheduler() *chan JobExecutionReport {
 }
 
 // CreateNewJob returns newly created Job ID and nil, or error if creating a job was unsuccessful
-func (js *JobScheduler) CreateNewJob(schedule Schedule, description string, fn interface{}, args ...interface{}) (string, error) {
+func (js *JobScheduler) CreateNewJob(description string, schedule Schedule, fn interface{}, args ...interface{}) (string, error) {
 
 	errMessagePrefix := fmt.Sprintf("can't create \"%s\" job: ", description)
 
