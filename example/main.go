@@ -3,12 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/anxp/job-scheduler"
+	"github.com/anxp/go-job-scheduler"
 )
 
 func main() {
 
-	scheduler := job_scheduler.NewJobScheduler()
+	scheduler := go_job_scheduler.NewJobScheduler()
 	reportChannel := scheduler.RunJobScheduler() // We can start Job Scheduler immediately, even if job pool is empty at the moment
 	additionalDataAForJob := "Some text message"
 	additionalDataBForJob := 998

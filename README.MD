@@ -8,13 +8,13 @@ it will not affect the launch of other tasks in any way.*
 
 ## Example of usage:
 ```
-scheduler := job_scheduler.NewJobScheduler()
+scheduler := go_job_scheduler.NewJobScheduler()
 reportChannel := scheduler.RunJobScheduler() // We can start Job Scheduler immediately, even if job pool is empty at the moment
 
 additionalDataAForJob := "Some text message"
 additionalDataBForJob := 998
 
-schedule := job_scheduler.Schedule{
+schedule := go_job_scheduler.Schedule{
     Minute:     "10",
     Hour:       "*",
     DayOfMonth: "*",

@@ -1,4 +1,4 @@
-package job_scheduler
+package go_job_scheduler
 
 import (
 	"fmt"
