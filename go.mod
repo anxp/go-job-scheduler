@@ -1,3 +1,3 @@
-module github.com/anxp/go-job-scheduler
+module github.com/anxp/job-scheduler
 
 go 1.19
