@@ -14,7 +14,7 @@ func main() {
 	additionalDataBForJob := 998
 
 	//=== This is normal job which can be successfully completed: ======================================================
-	_, err := scheduler.CreateNewJob(job_scheduler.Schedule{
+	_, err := scheduler.CreateNewJob(go_job_scheduler.Schedule{
 		Minute:     "10",
 		Hour:       "*",
 		DayOfMonth: "*",
@@ -34,7 +34,7 @@ func main() {
 	//==================================================================================================================
 
 	//=== This is example of job that cannot be successfully completed, it runs every minute and issues an error: ======
-	_, err = scheduler.CreateNewJob(job_scheduler.Schedule{
+	_, err = scheduler.CreateNewJob(go_job_scheduler.Schedule{
 		Minute:     "*",
 		Hour:       "*",
 		DayOfMonth: "*",
@@ -54,7 +54,7 @@ func main() {
 	//==================================================================================================================
 
 	//=== This is example of job that will never run because there are no 60th minute, use 0 instead! ==================
-	_, err = scheduler.CreateNewJob(job_scheduler.Schedule{
+	_, err = scheduler.CreateNewJob(go_job_scheduler.Schedule{
 		Minute:     "60",
 		Hour:       "*",
 		DayOfMonth: "*",
@@ -74,7 +74,7 @@ func main() {
 	//==================================================================================================================
 
 	//=== This is example of job that will run once an hour at 0 minute: ===============================================
-	_, err = scheduler.CreateNewJob(job_scheduler.Schedule{
+	_, err = scheduler.CreateNewJob(go_job_scheduler.Schedule{
 		Minute:     "0",
 		Hour:       "*",
 		DayOfMonth: "*",
